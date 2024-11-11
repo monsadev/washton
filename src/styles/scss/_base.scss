@@ -1,0 +1,438 @@
+body,
+html {
+  scroll-behavior: smooth;
+  font-family: 'Inter', sans-serif !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ebebeb;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background: #00000033;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.wrapperr {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.grid {
+  display: grid;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+// Generate label color and bg color classes and also for border
+$labelColors: (
+  1: var(--label-color-1),
+  2: var(--label-color-2),
+  3: var(--label-color-3),
+  4: var(--label-color-4),
+  5: var(--label-color-5),
+  6: var(--label-color-6),
+  7: var(--label-color-7),
+  8: var(--label-color-8),
+  9: var(--label-color-9),
+  10: var(--label-color-10),
+  11: var(--label-color-11),
+);
+
+$borderWidths: (
+  2: 2px,
+  3: 3px,
+  4: 4px,
+  6: 6px,
+  8: 8px,
+);
+
+.scrollbar-hidden {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.outline-none {
+  outline: 0;
+}
+
+.w-max-content {
+  width: max-content;
+}
+
+.h-max-content {
+  height: max-content;
+}
+
+@each $key, $value in $labelColors {
+  .text-color-#{$key} {
+    color: $value;
+  }
+  .bg-color-#{$key} {
+    background-color: $value;
+  }
+  // Border color classes
+  .border-color-#{$key} {
+    border-color: $value;
+  }
+}
+
+// font size function
+$fontSizeStart: 1;
+$fontSizeEnd: 100;
+
+@for $i from $fontSizeStart through $fontSizeEnd {
+  $remSize: $i / 16;
+  .fs-#{$i} {
+    font-size: #{$remSize}rem;
+  }
+}
+
+//  font weight function
+$fontWeight: 300 400 500 600 700;
+
+@each $fontWeight in $fontWeight {
+  .fw-#{$fontWeight} {
+    font-weight: #{$fontWeight};
+  }
+}
+
+// line height function
+$lineHightsStart: 10;
+$lineHightsEnd: 100;
+
+@for $i from $lineHightsStart through $lineHightsEnd {
+  $remSize: $i / 16;
+  .lh-#{$i} {
+    line-height: #{$remSize}rem;
+  }
+}
+
+// Width and height size function
+$customStart: 0;
+$customEnd: 1600;
+
+@for $i from $customStart through $customEnd {
+  $remSize: $i / 16;
+  // for width
+  .max-w-#{$i} {
+    max-width: #{$remSize}rem;
+  }
+  .min-w-#{$i} {
+    min-width: #{$remSize}rem;
+  }
+  .w-size-#{$i} {
+    width: #{$remSize}rem;
+  }
+}
+
+@for $i from $customStart through $customEnd {
+  $remSize: $i / 16;
+  // for width
+  .max-h-#{$i} {
+    max-height: #{$remSize}rem !important;
+  }
+  .min-h-#{$i} {
+    min-height: #{$remSize}rem !important;
+  }
+  .h-size-#{$i} {
+    height: #{$remSize}rem;
+  }
+}
+
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+
+// padding function
+$paddingStart: 0;
+$paddingEnd: 400;
+
+@for $i from $paddingStart through $paddingEnd {
+  $remSize: $i / 16;
+  // for padding function
+
+  .px-#{$i} {
+    padding-left: #{$remSize}rem;
+    padding-right: #{$remSize}rem;
+  }
+  .py-#{$i} {
+    padding-top: #{$remSize}rem;
+    padding-bottom: #{$remSize}rem;
+  }
+  .pt-#{$i} {
+    padding-top: #{$remSize}rem;
+  }
+  .pb-#{$i} {
+    padding-bottom: #{$remSize}rem;
+  }
+  .pl-#{$i} {
+    padding-left: #{$remSize}rem;
+  }
+  .pr-#{$i} {
+    padding-right: #{$remSize}rem;
+  }
+  .p-#{$i} {
+    padding-top: #{$remSize}rem;
+    padding-right: #{$remSize}rem;
+    padding-bottom: #{$remSize}rem;
+    padding-left: #{$remSize}rem;
+  }
+  // for margin function
+  .m-#{$i} {
+    margin-top: #{$remSize}rem;
+    margin-right: #{$remSize}rem;
+    margin-bottom: #{$remSize}rem;
+    margin-left: #{$remSize}rem;
+  }
+  .mx-#{$i} {
+    margin-left: #{$remSize}rem;
+    margin-right: #{$remSize}rem;
+  }
+  .my-#{$i} {
+    margin-top: #{$remSize}rem;
+    margin-bottom: #{$remSize}rem;
+  }
+  .mt-#{$i} {
+    margin-top: #{$remSize}rem;
+  }
+  .mb-#{$i} {
+    margin-bottom: #{$remSize}rem;
+  }
+  .ml-#{$i} {
+    margin-left: #{$remSize}rem;
+  }
+  .mr-#{$i} {
+    margin-right: #{$remSize}rem;
+  }
+}
+
+// border redius for mobile
+$borderReduisStart: 0;
+$borderReduisEnd: 100;
+
+@for $i from $borderReduisStart through $borderReduisEnd {
+  $remSize: $i / 16;
+  .rounded-#{$i} {
+    border-radius: #{$remSize}rem;
+  }
+  .rounded-t-#{$i} {
+    border-top-right-radius: #{$remSize}rem;
+    border-top-left-radius: #{$remSize}rem;
+  }
+  .rounded-b-#{$i} {
+    border-bottom-right-radius: #{$remSize}rem;
+    border-bottom-left-radius: #{$remSize}rem;
+  }
+  .rounded-tr-#{$i} {
+    border-top-right-radius: #{$remSize}rem;
+  }
+  .rounded-tl-#{$i} {
+    border-top-left-radius: #{$remSize}rem;
+  }
+  .rounded-bl-#{$i} {
+    border-bottom-left-radius: #{$remSize}rem;
+  }
+  .rounded-br-#{$i} {
+    border-bottom-right-radius: #{$remSize}rem;
+  }
+}
+
+//  for line clamp
+$linesStart: 1;
+$linesEnd: 7;
+
+@mixin line-clamp($lines: 1) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  text-overflow: ellipsis;
+}
+
+// Define range for the number of lines
+
+// Generate classes for text truncation with different line limits
+@for $i from $linesStart through $linesEnd {
+  .line-clamp-#{$i} {
+    @include line-clamp($i);
+  }
+}
+
+//  only text line overflow
+.text-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+// Toast message
+.Toastify__toast--success {
+  background: #ffffff !important;
+  font-size: 14px !important;
+  color: var(--label-color-1) !important;
+  font-weight: 500 !important;
+  border-left: #00bf4b solid 5px !important;
+  box-shadow: rgb(0 0 0 / 25%) 0px 10px 40px !important;
+}
+.Toastify__close-button {
+  color: var(--label-color-1) !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  margin-top: 15px;
+}
+.Toastify__toast--error {
+  background: #ffffff !important;
+  border-left: #e74c3c solid 5px !important;
+  font-size: 14px !important;
+  color: var(--label-color-1) !important;
+  font-weight: 500 !important;
+  box-shadow: rgb(0 0 0 / 25%) 0px 10px 40px !important;
+}
+.Toastify__toast-container {
+  z-index: 99999999 !important;
+}
+.Toastify--animate-icon {
+  display: none !important;
+}
+.Toastify__close-button {
+  margin-top: 12px !important;
+}
+
+@media (min-width: 992px) {
+  //  for font size
+  @for $i from $fontSizeStart through $fontSizeEnd {
+    $remSize: $i / 16;
+    .fs-lg-#{$i} {
+      font-size: #{$remSize}rem;
+    }
+  }
+  // font weight
+  @each $fontWeight in $fontWeight {
+    .fw-lg-#{$fontWeight} {
+      font-weight: #{$fontWeight};
+    }
+  }
+  //  for line height
+  @for $i from $lineHightsStart through $lineHightsEnd {
+    $remSize: $i / 16;
+    .lh-lg-#{$i} {
+      line-height: #{$remSize}rem;
+    }
+  }
+
+  // for width and height
+  @for $i from $customStart through $customEnd {
+    $remSize: $i / 16;
+    // for width
+    .max-w-lg-#{$i} {
+      max-width: #{$remSize}rem;
+    }
+    .min-w-lg-#{$i} {
+      min-width: #{$remSize}rem;
+    }
+    .w-size-lg-#{$i} {
+      width: #{$remSize}rem;
+    }
+  }
+  @for $i from $customStart through $customEnd {
+    $remSize: $i / 16;
+    // for height
+    .max-h-lg-#{$i} {
+      max-height: #{$remSize}rem;
+    }
+    .min-h-lg-#{$i} {
+      min-height: #{$remSize}rem;
+    }
+    .h-size-lg-#{$i} {
+      height: #{$remSize}rem;
+    }
+  }
+
+  //  for padding and margin
+  @for $i from $paddingStart through $paddingEnd {
+    $remSize: $i / 16;
+    // for padding function
+    .px-lg-#{$i} {
+      padding-left: #{$remSize}rem;
+      padding-right: #{$remSize}rem;
+    }
+    .py-lg-#{$i} {
+      padding-top: #{$remSize}rem;
+      padding-bottom: #{$remSize}rem;
+    }
+    .pt-lg-#{$i} {
+      padding-top: #{$remSize}rem;
+    }
+    .pb-lg-#{$i} {
+      padding-bottom: #{$remSize}rem;
+    }
+    .pl-lg-#{$i} {
+      padding-left: #{$remSize}rem;
+    }
+    .pr-lg-#{$i} {
+      padding-right: #{$remSize}rem;
+    }
+
+    .p-lg-#{$i} {
+      padding-top: #{$remSize}rem;
+      padding-right: #{$remSize}rem;
+      padding-bottom: #{$remSize}rem;
+      padding-left: #{$remSize}rem;
+    }
+
+    // for margin function
+    .m-lg-#{$i} {
+      margin-top: #{$remSize}rem;
+      margin-right: #{$remSize}rem;
+      margin-bottom: #{$remSize}rem;
+      margin-left: #{$remSize}rem;
+    }
+    .mx-lg-#{$i} {
+      margin-left: #{$remSize}rem;
+      margin-right: #{$remSize}rem;
+    }
+    .my-lg-#{$i} {
+      margin-top: #{$remSize}rem;
+      margin-bottom: #{$remSize}rem;
+    }
+    .mt-lg-#{$i} {
+      margin-top: #{$remSize}rem;
+    }
+    .mb-lg-#{$i} {
+      margin-bottom: #{$remSize}rem;
+    }
+    .ml-lg-#{$i} {
+      margin-left: #{$remSize}rem;
+    }
+    .mr-lg-#{$i} {
+      margin-right: #{$remSize}rem;
+    }
+  }
+}
