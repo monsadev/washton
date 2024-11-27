@@ -14,6 +14,7 @@ export default function BookNowModal({ setShowBookNow }) {
   const [lastName, setLastName] = useState('');
   const [mobileNo, setMobileNo] = useState('');
   const [address, setAddress] = useState('');
+  const [showThankYou, setShowThankYou] = useState(false);
   const [checkedTerms, setCheckedTerms] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -52,14 +53,15 @@ export default function BookNowModal({ setShowBookNow }) {
           'gU2_vHQlUq-VmzVx_' // Replace with your EmailJS User ID
         )
         .then((result) => {
-          toast.success('Message sent successfully!', toastConfig);
+          // toast.success('Message sent successfully!', toastConfig);
           // Clear the form after submission
           setFirstName('');
           setLastName('');
           setMobileNo('');
           setAddress('');
           setIsLoading(false);
-          setShowBookNow(false);
+          setShowThankYou(true);
+          // setShowBookNow(false);
         })
         .catch((error) => {
           setIsLoading(false);
@@ -87,104 +89,122 @@ export default function BookNowModal({ setShowBookNow }) {
         contentClassName="max-w-555 mx-auto rounded-20"
       >
         <Modal.Body className="px-lg-44 px-20 py-lg-40 py-24">
-          <div className="d-flex align-items-center justify-content-between">
-            <h4 className="m-0 text-color-1 fs-lg-24 fs-18 fw-500 lh-30">Schedule Free Pick Up</h4>
-            <span className="cursor-pointer" onClick={() => setShowBookNow(false)}>
-              <Image
-                src={'/images/x-circle.svg'}
-                width={25}
-                height={25}
-                alt="Close"
-                title="Close"
-                className="img-fluid"
-              />
-            </span>
-          </div>
-          <form className="row" onSubmit={handleSubmit}>
-            <div className="col-md-6">
-              <FloatingLabelInput
-                label="First Name"
-                type={'text'}
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-              {errors.firstName && (
-                <p style={{ marginTop: '-1rem' }} className="text-danger fs-13 fw-500">
-                  {errors.firstName}
-                </p>
-              )}
-            </div>
-            <div className="col-md-6">
-              <FloatingLabelInput
-                label="Last Name"
-                type={'text'}
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-              {errors.lastName && (
-                <p style={{ marginTop: '-1rem' }} className="text-danger fs-13 fw-500">
-                  {errors.lastName}
-                </p>
-              )}
-            </div>
-            <div className="col-md-12">
-              <FloatingLabelInput
-                label="Phone Number"
-                type={'number'}
-                value={mobileNo}
-                onChange={(e) => setMobileNo(e.target.value)}
-              />
-              {errors.mobileNo && (
-                <p style={{ marginTop: '-1rem' }} className="text-danger fs-13 fw-500">
-                  {errors.mobileNo}
-                </p>
-              )}
-            </div>
-            <div className="col-md-12">
-              <FloatingLabelInput
-                label="Where to pick up from"
-                type={'textarea'}
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-              {errors.address && (
-                <p style={{ marginTop: '-1rem' }} className="text-danger fs-13 fw-500">
-                  {errors.address}
-                </p>
-              )}
-            </div>
-            <div className="col-12">
-              <div className="form-check">
-                <input
-                  className="form-check-input def-check shadow-none cursor-pointer outline-none"
-                  type="checkbox"
-                  value=""
-                  onChange={(e) => handleCheckTerms(e)}
-                  id="termsCheck"
-                  checked={checkedTerms}
-                />
-                <label
-                  className="user-select-none form-check-label text-color-5 fw-400 lh-18 fs-12 cursor-pointer"
-                  htmlFor="termsCheck"
-                >
-                  By clicking submit you agree to our terms & condition.
-                </label>
+          {(!showThankYou && (
+            <>
+              <div className="d-flex align-items-center justify-content-between">
+                <h4 className="m-0 text-color-1 fs-lg-24 fs-18 fw-500 lh-30">Schedule Free Pick Up</h4>
+                <span className="cursor-pointer" onClick={() => setShowBookNow(false)}>
+                  <Image
+                    src={'/images/x-circle.svg'}
+                    width={25}
+                    height={25}
+                    alt="Close"
+                    title="Close"
+                    className="img-fluid"
+                  />
+                </span>
               </div>
+              <form className="row" onSubmit={handleSubmit}>
+                <div className="col-md-6">
+                  <FloatingLabelInput
+                    label="First Name"
+                    type={'text'}
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                  {errors.firstName && (
+                    <p style={{ marginTop: '-1rem' }} className="text-danger fs-13 fw-500">
+                      {errors.firstName}
+                    </p>
+                  )}
+                </div>
+                <div className="col-md-6">
+                  <FloatingLabelInput
+                    label="Last Name"
+                    type={'text'}
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                  {errors.lastName && (
+                    <p style={{ marginTop: '-1rem' }} className="text-danger fs-13 fw-500">
+                      {errors.lastName}
+                    </p>
+                  )}
+                </div>
+                <div className="col-md-12">
+                  <FloatingLabelInput
+                    label="Phone Number"
+                    type={'number'}
+                    value={mobileNo}
+                    onChange={(e) => setMobileNo(e.target.value)}
+                  />
+                  {errors.mobileNo && (
+                    <p style={{ marginTop: '-1rem' }} className="text-danger fs-13 fw-500">
+                      {errors.mobileNo}
+                    </p>
+                  )}
+                </div>
+                <div className="col-md-12">
+                  <FloatingLabelInput
+                    label="Where to pick up from"
+                    type={'textarea'}
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                  />
+                  {errors.address && (
+                    <p style={{ marginTop: '-1rem' }} className="text-danger fs-13 fw-500">
+                      {errors.address}
+                    </p>
+                  )}
+                </div>
+                <div className="col-12">
+                  <div className="form-check">
+                    <input
+                      className="form-check-input def-check shadow-none cursor-pointer outline-none"
+                      type="checkbox"
+                      value=""
+                      onChange={(e) => handleCheckTerms(e)}
+                      id="termsCheck"
+                      checked={checkedTerms}
+                    />
+                    <label
+                      className="user-select-none form-check-label text-color-5 fw-400 lh-18 fs-12 cursor-pointer"
+                      htmlFor="termsCheck"
+                    >
+                      By clicking submit you agree to our terms & condition.
+                    </label>
+                  </div>
+                </div>
+                <div className="col-12 mt-30">
+                  <div className="text-center">
+                    <button
+                      disabled={isLoading || !checkedTerms}
+                      type="submit"
+                      style={{ opacity: `${isLoading || !checkedTerms ? '0.5' : '1'}` }}
+                      className="w-100 h-size-51 mx-auto text-color-2 btn-blue button-hover fs-16 fw-500 outline-none d-flex align-items-center justify-content-center rounded-28 border-0"
+                    >
+                      {isLoading && <Spinner animation="border" role="status" size={'sm'} className="me-2"></Spinner>}
+                      Send Message
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </>
+          )) || (
+            <div className="text-center">
+              <Image src={'/images/green-check.svg'} width={59} height={59} alt="Icon" className="img-fluid mb-25" />
+              <h4 className="mb-20 fs-24 fw-500 lh-30 text-color-1">Thank You!</h4>
+              <p className="fs-16 fw-400 lh-22 text-color-5 mb-40">
+                You details has been successfully submitted. Thanks! Washton team will contact you soon.
+              </p>
+              <button
+                onClick={() => setShowBookNow(false)}
+                className="px-4 w-max-content min-w-147 h-size-51 mx-auto text-color-2 btn-blue button-hover fs-16 fw-500 outline-none d-flex align-items-center justify-content-center rounded-28 border-0"
+              >
+                Okay
+              </button>
             </div>
-            <div className="col-12 mt-30">
-              <div className="text-center">
-                <button
-                  disabled={isLoading || !checkedTerms}
-                  type="submit"
-                  style={{ opacity: `${isLoading || !checkedTerms ? '0.5' : '1'}` }}
-                  className="w-100 h-size-51 mx-auto text-color-2 btn-blue button-hover fs-16 fw-500 outline-none d-flex align-items-center justify-content-center rounded-28 border-0"
-                >
-                  {isLoading && <Spinner animation="border" role="status" size={'sm'} className="me-2"></Spinner>}
-                  Send Message
-                </button>
-              </div>
-            </div>
-          </form>
+          )}
         </Modal.Body>
       </Modal>
     </>
